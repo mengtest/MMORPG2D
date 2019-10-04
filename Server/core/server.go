@@ -11,8 +11,8 @@ type SocketTypes interface {
 }
 
 type Msf struct {
-	EventPool     *RountersMap
-	SessionMaster *Session
+	EventPool     *RoutersMap
+	SessionMaster *SessionM
 	SocketType    SocketTypes
 }
 

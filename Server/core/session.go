@@ -71,8 +71,8 @@ func (this *SessionM) SetSession(fd uint32, conn net.Conn) {
 	this.sessions.Store(fd, sess)
 }
 
-//关闭连接并删除
-func (this *SessionM) DelSessionById(id uint32) {
+//DelSessionById 关闭连接并删除
+func (this *SessiosnM) DelSessionById(id uint32) {
 	tem, exit := this.sessions.Load(id)
 	if exit {
 		if sess, ok := tem.(*Session); ok {
@@ -82,6 +82,7 @@ func (this *SessionM) DelSessionById(id uint32) {
 	this.sessions.Delete(id)
 }
 
+//WriteToAll
 //向所有客户端发送消息
 func (this *SessionM) WriteToAll(msg []byte) {
 	msg = this.ser.SocketType.Pack(msg)
@@ -96,6 +97,7 @@ func (this *SessionM) WriteToAll(msg []byte) {
 	})
 }
 
+//WriteByid
 //向单个客户端发送信息
 func (this *SessionM) WriteByid(id uint32, msg []byte) bool {
 	//把消息打包
@@ -113,7 +115,9 @@ func (this *SessionM) WriteByid(id uint32, msg []byte) bool {
 	return false
 }
 
-//心跳检测   每秒遍历一次 查看所有sess 上次接收消息时间  如果超过 num 就删除该 sess
+// HeartBeat
+// 心跳检测
+// 每秒遍历一次 查看所有sess 上次接收消息时间  如果超过 num 就删除该 sess
 func (this *SessionM) HeartBeat(num int64) {
 	for {
 		time.Sleep(time.Second)
