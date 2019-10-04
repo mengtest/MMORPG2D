@@ -72,7 +72,7 @@ func (this *SessionM) SetSession(fd uint32, conn net.Conn) {
 }
 
 //DelSessionById 关闭连接并删除
-func (this *SessiosnM) DelSessionById(id uint32) {
+func (this *SessionM) DelSessionById(id uint32) {
 	tem, exit := this.sessions.Load(id)
 	if exit {
 		if sess, ok := tem.(*Session); ok {
@@ -132,6 +132,5 @@ func (this *SessionM) HeartBeat(num int64) {
 			}
 			return true
 		})
-
 	}
 }
