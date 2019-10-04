@@ -4,3 +4,4 @@
 
 - 客户端采用python，基于pygame
 - 服务器采用golang，基于gonet
+- orm框架采用gorm

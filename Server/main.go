@@ -48,9 +48,9 @@ func (this Test) Hello(fd uint32, data map[string]string) bool {
 }
 
 //----------------------------------------------------------------------------------------------------------------------
-func main() {
-	log.SetFlags(log.Lshortfile | log.LstdFlags | log.Llongfile)
-	ser.EventPool.RegisterEvent(&event{})
-	ser.EventPool.RegisterStructFun("test", &Test{})
-	ser.Listening(":8565")
-}
+// func main() {
+// 	log.SetFlags(log.Lshortfile | log.LstdFlags | log.Llongfile)
+// 	ser.EventPool.RegisterEvent(&event{})
+// 	ser.EventPool.RegisterStructFun("test", &Test{})
+// 	ser.Listening(":8565")
+// }
