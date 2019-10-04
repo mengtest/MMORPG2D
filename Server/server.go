@@ -58,6 +58,10 @@ func handleconn(conn net.Conn) {
 				for _,s := range onlinemap{
 					conn.Write([]byte(s.name+"online\n"))
 				}
+			}else if string(buf[:2])=="m|"&&strings.Count(string(buf[:n]),"|")==2{
+				//私聊功能实现
+				flag =false
+				slice := strings.Split(string(buf))
 			}
 
 		}

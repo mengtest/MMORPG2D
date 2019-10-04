@@ -1,23 +1,30 @@
 import wx
 from socket import *
 import views.LoginFrame as lf
-
-class App(wx.App):
-    def OnInit(self):
-        # frame = wx.Frame(parent = None,title ='第一个窗口程序')
-        # frame.Show()
-        return True
-
-class MyFrame(wx.Frame):
-    def __init__(self,parent,id):
-        wx.Frame.__init__(self,parent,id,title="测试",pos=(100,100),size=(300,300))
-        panel = wx.Panel(self)
-        wx.StaticText(panel,label='李维民',pos=(50,50))
-
+import pygame
+from pygame.locals import *
 
 def main():
     print("main is call!")
-    # 加载数据
+    pygame.init()
+    screen = pygame.display.set_mode((800,600))
+
+    running = True
+    while running:
+        for event in pygame.event.get():
+            if event.type == KEYDOWN:
+                if event.key == K_ESCAPE:
+                    running = False
+                elif event.type==QUIT:
+                    running = False
+
+    surf = pygame.Surface((50,50))
+    surf.fill((255,255,255))
+    rect = surf.get_rect()
+
+    screen.blit(surf,(400,300))
+    pygame.display.flip()
+
 
 def startClient():
     BUFSIZE = 1024
@@ -35,11 +42,6 @@ def startClient():
         tcpClisock.close()
 
 if __name__== '__main__':
-    # main()
-    # app = App()
-    # # frame = MyFrame(parent=None,id=1)
-    # loginframe = lf.LoginFrame(parent=None,id = 1)
-    # loginframe.Show()
-    # app.MainLoop()
-    root = startClient()
-    root.MainLoop()
+    main()
+    # root = startClient()
+    # root.MainLoop()
